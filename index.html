@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="style1.css">
+    <title>GymBuddy</title>
+  </head>
+  <body>
+    <div class="header-background">
+        <div class="header-title"><a style="text-decoration: none; color: red;" href="index.html">GymBuddy</a></div>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-home" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-media" href="information.html">Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-about" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-contact" href="contact.html">Contact</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-buy" href="buy.html" tabindex="-1">Buy</a>
+            </li>
+        </ul>
+    </div>
+    <div class="home-background">
+        <div class="hometitle">
+          <div class="hometext"><h1>Welcome To GymBuddy</h1></div>
+        </div>
+        <div class="body-background">
+          <div class="homebody">
+            <h1>Kalkulator BMI</h1>
+            <p>Body Mass Index (BMI) atau Indeks Massa Tubuh (IMT) adalah angka yang menentukan apakah berat badan Anda ideal, kurang, atau berlebih.</p>
+            <p>Masukkan berat (kg) : <input type="text" id="berat"></p>
+            <p>Masukkan tinggi(cm) : <input type="text" id="tinggi"></p>
+            <button onclick="hitungBMI()">Hitung BMI</button>
+            <button onclick="resetBMI()">Reset</button>
+            <p id="hasil"></p>
+            <p id="keterangan"></p>
+            <p id="tabel"></p>
+          </div>
+        </div>
+    </div>
+    <div class="footer">
+      copyright @2023 GymBuddy, All Right Reserved.
+    </div>
+
+    
+
+    <script type="text/javascript">
+        function hitungBMI() {
+            var berat = parseFloat(document.getElementById("berat").value);
+            var tinggiCm = parseFloat(document.getElementById("tinggi").value);
+
+             var tinggi = tinggiCm / 100;
+            
+            if (!isNaN(berat) && !isNaN(tinggi)) {
+                var bmi = berat / (tinggi * tinggi);
+                document.getElementById("hasil").innerHTML = "BMI Anda: " + bmi.toFixed(2);
+
+                var keterangan = "";
+
+                if (bmi < 18.5) {
+                    keterangan = "Berat badan kurang";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    keterangan = "Berat badan normal";
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    keterangan = "Berat badan berlebih";
+                } else {
+                    keterangan = "Obesitas";
+                }
+
+                var gambarHTML = "<br><div style='display: flex; flex-direction: column; align-items: center;'><img src='img/tabelbmi.jpg' alt='Deskripsi Gambar' width='300'>";
+                document.getElementById("keterangan").innerHTML = "Keterangan: " + keterangan + gambarHTML;
+            } else {
+                alert("Masukkan berat dan tinggi yang valid.");
+            }
+        }
+        function resetBMI() {
+        document.getElementById("berat").value = "";
+        document.getElementById("tinggi").value = "";
+        document.getElementById("hasil").innerHTML = "";
+        document.getElementById("keterangan").innerHTML = "";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
